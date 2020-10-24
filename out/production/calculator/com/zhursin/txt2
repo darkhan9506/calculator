@@ -1,0 +1,46 @@
+package com.zhursin;
+import java.util.Scanner;
+
+public class CalculatorApp {
+    private static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        String tempString = sc.nextLine();
+        String romanNums[] = tempString.split("\\");
+        String numString[] = tempString.split("\\W+");
+        String sign[] = tempString.split("\\d");
+        for (String a : romanNums) {
+            System.out.println(a);
+        }
+//        System.out.println(sign.length);
+        int nums[] = new int[2];
+        char operator = 0;
+        int firstNum = 0;
+        int secondNum = 0;
+        int result;
+        String s;
+        try {
+            for (int i = 0; i < numString.length; i++) {
+                nums[i] = Integer.parseInt(numString[i]);
+            }
+            firstNum = nums[0];
+            if (firstNum > 10 || firstNum < 1) {
+                throw new Exception("Калькулятор должен принимать на вход числа от 1 до 10 включительно, не более.");
+            }
+            if (firstNum == 10) {
+                s = sign[2];
+            } else {
+                s = sign[1];
+            }
+//            System.out.println(s);
+            operator = s.charAt(1);
+//            System.out.println(operator);
+            secondNum = nums[1];
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        Calculator calculator = new Calculator();
+        result = calculator.makeCalculation(firstNum, operator, secondNum);
+        System.out.println(result);
+    }
+}

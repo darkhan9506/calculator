@@ -1,0 +1,39 @@
+package com.zhursin;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class CalculatorApp {
+    private static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+
+        char operator = 0;
+        long firstNum = 0;
+        long secondNum = 0;
+        long result;
+        try {
+            firstNum = getInput(sc);
+            operator = sc.next().charAt(0);
+            secondNum = getInput(sc);
+            if(secondNum == 0) {
+                throw new ArithmeticException("на 0 делить нелья!");
+            }
+        } catch (InputMismatchException ime) {
+            System.out.println("Неправильный ввод");
+        }
+        Calculator calculator = new Calculator();
+        result = calculator.makeCalculation(firstNum, operator, secondNum);
+        System.out.println(result);
+    }
+
+    public static int getInput(Scanner in) {
+        System.out.println("Введите число от 1 до 10:");
+        int input = 0;
+        while (true) {
+            input = in.nextInt();
+            if (input >= 1 && input <= 10)
+                break;
+            System.out.println("Неправильное число.\nВведите число между 1-10");
+        }
+        return input;
+    }
+}
