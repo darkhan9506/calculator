@@ -49,8 +49,8 @@ public class Calculator {
         int leftInt, rightInt;
         int resultInt = 0;
 
-        leftInt = RomanNumerals.parse(leftNumber.toUpperCase());
-        rightInt = RomanNumerals.parse(rightNumber.toUpperCase());
+        leftInt = RomanNumerals.convertRomanToArabic(leftNumber.toUpperCase());
+        rightInt = RomanNumerals.convertRomanToArabic(rightNumber.toUpperCase());
 
         if (leftInt == -1) {
             numValid = false;
@@ -80,7 +80,7 @@ public class Calculator {
         if (numValid == true) {
             Operation operationMapValue = operationMap.getOrDefault(operation, new NoOperationFound(operation));
             resultInt = operationMapValue.calculateResult(leftInt, rightInt);
-            System.out.println(RomanNumerals.format(resultInt));
+            System.out.println(RomanNumerals.convertArabicToRoman(resultInt));
         }
     }
 }
